@@ -181,6 +181,93 @@ class PaymentActionsServiceUnitTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
+    fun `when responseBody status is ready_for_confirmation, Success is returned with READY_FOR_CONFIRMATION status`() =
+        runTest(testDispatcher) {
+            val responseBody = """
+                {
+                    "data": {
+                        "setPaymentActionPaymentMethod": {
+                            "paymentAction": {
+                                "id": "pa123",
+                                "status": "ready_for_confirmation"
+                            }
+                        }
+                    }
+                }
+            """.trimIndent()
+
+            val braintreeClient = MockkBraintreeClientBuilder()
+                .sendGraphQLPostSuccessfulResponse(responseBody)
+                .build()
+
+            val service = PaymentActionsService(braintreeClient)
+            val result = service.setPaymentActionPaymentMethod(mockPaymentMethod())
+            advanceUntilIdle()
+
+            val success = assertIs<PaymentActionResult.Success>(result)
+            assertEquals(PaymentActionStatus.READY_FOR_CONFIRMATION, success.paymentAction.status)
+        }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `when responseBody status is canceled, Success is returned with CANCELED status`() =
+        runTest(testDispatcher) {
+            val responseBody = """
+                {
+                    "data": {
+                        "setPaymentActionPaymentMethod": {
+                            "paymentAction": {
+                                "id": "pa123",
+                                "status": "canceled"
+                            }
+                        }
+                    }
+                }
+            """.trimIndent()
+
+            val braintreeClient = MockkBraintreeClientBuilder()
+                .sendGraphQLPostSuccessfulResponse(responseBody)
+                .build()
+
+            val service = PaymentActionsService(braintreeClient)
+            val result = service.setPaymentActionPaymentMethod(mockPaymentMethod())
+            advanceUntilIdle()
+
+            val success = assertIs<PaymentActionResult.Success>(result)
+            assertEquals(PaymentActionStatus.CANCELED, success.paymentAction.status)
+        }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `when responseBody status is expired, Success is returned with EXPIRED status`() =
+        runTest(testDispatcher) {
+            val responseBody = """
+                {
+                    "data": {
+                        "setPaymentActionPaymentMethod": {
+                            "paymentAction": {
+                                "id": "pa123",
+                                "status": "expired"
+                            }
+                        }
+                    }
+                }
+            """.trimIndent()
+
+            val braintreeClient = MockkBraintreeClientBuilder()
+                .sendGraphQLPostSuccessfulResponse(responseBody)
+                .build()
+
+            val service = PaymentActionsService(braintreeClient)
+            val result = service.setPaymentActionPaymentMethod(mockPaymentMethod())
+            advanceUntilIdle()
+
+            val success = assertIs<PaymentActionResult.Success>(result)
+            assertEquals(PaymentActionStatus.EXPIRED, success.paymentAction.status)
+        }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
     fun `when responseBody status is an unrecognized value, Success is returned with UNKNOWN status`() =
         runTest(testDispatcher) {
             val responseBody = """
