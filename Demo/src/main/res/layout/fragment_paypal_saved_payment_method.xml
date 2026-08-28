@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/paypal_saved_payment_method_screen_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- ===== Enter Amount ===== -->
+        <LinearLayout
+            style="@style/PayPalSavedPaymentMethodCard">
+
+            <TextView
+                style="@style/PayPalSavedPaymentMethodRowLabel"
+                android:text="@string/paypal_saved_payment_method_amount_label" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_paypal_saved_payment_method_pill"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp">
+
+                <EditText
+                    android:id="@+id/paypal_saved_payment_method_amount_edit_text"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="@string/paypal_saved_payment_method_default_amount"
+                    android:textColor="@color/paypal_saved_payment_method_label_text" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <!-- ===== App Switch ===== -->
+        <LinearLayout
+            style="@style/PayPalSavedPaymentMethodCard">
+
+            <TextView
+                style="@style/PayPalSavedPaymentMethodRowLabel"
+                android:text="@string/paypal_saved_payment_method_app_switch_label" />
+
+            <Switch
+                android:id="@+id/paypal_saved_payment_method_app_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <!-- ===== Edit Style ===== -->
+        <LinearLayout
+            style="@style/PayPalSavedPaymentMethodCard">
+
+            <TextView
+                style="@style/PayPalSavedPaymentMethodRowLabel"
+                android:text="@string/paypal_saved_payment_method_label" />
+
+            <ImageButton
+                android:id="@+id/paypal_saved_payment_method_edit_style_button"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_paypal_saved_payment_method_pill"
+                android:contentDescription="@string/paypal_saved_payment_method_edit_style_description"
+                android:padding="8dp"
+                android:src="@drawable/ic_edit_pencil" />
+
+        </LinearLayout>
+
+        <!-- ===== PayPalSavedPaymentMethodView (dummy placeholder) ===== -->
+        <com.braintreepayments.demo.DummyPayPalSavedPaymentMethodView
+            android:id="@+id/paypal_saved_payment_method_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <!-- ===== Edit-flow result: last nonce received, for manual testing ===== -->
+        <LinearLayout
+            android:id="@+id/paypal_saved_payment_method_nonce_section"
+            style="@style/PayPalSavedPaymentMethodCard"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/paypal_saved_payment_method_nonce_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/paypal_saved_payment_method_label_text"
+                android:textIsSelectable="true" />
+
+            <Button
+                android:id="@+id/paypal_saved_payment_method_nonce_clear_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/paypal_saved_payment_method_nonce_clear_button" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -65,6 +65,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     String getAuthStringArg() {
-        return Objects.requireNonNull(requireArguments().getString("authString"));
+        String authString = requireArguments().getString("authString");
+        return Objects.requireNonNull(authString);
     }
 }

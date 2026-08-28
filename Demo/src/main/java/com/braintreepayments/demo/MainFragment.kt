@@ -76,6 +76,12 @@ class MainFragment : BaseFragment() {
                                 PaymentModuleButton(R.string.payment_buttons_compose_button) {
                                     launchComposePaymentButtons()
                                 }
+                                PaymentModuleButton(R.string.paypal_saved_payment_method_button) {
+                                    launchPayPalSavedPaymentMethod()
+                                }
+                                PaymentModuleButton(R.string.compose_paypal_saved_payment_method_button) {
+                                    launchComposePayPalSavedPaymentMethod()
+                                }
                                 PaymentModuleButton(R.string.venmo) { launchVenmo() }
                                 PaymentModuleButton(R.string.cards) { launchCards() }
                                 PaymentModuleButton(R.string.google_pay) { launchGooglePay() }
@@ -224,6 +230,30 @@ class MainFragment : BaseFragment() {
             action.setAuthString(authString)
             findNavController().navigate(action)
         }
+    }
+
+    private fun launchPayPalSavedPaymentMethod() {
+        val action = MainFragmentDirections.actionMainFragmentToPaypalSavedPaymentMethodFragment()
+        action.setAuthString("authString")
+        findNavController().navigate(action)
+
+       /* fetchAuthorizationAndHandleError { authString ->
+            val action = MainFragmentDirections.actionMainFragmentToPaypalSavedPaymentMethodFragment()
+            action.setAuthString(authString)
+            findNavController().navigate(action)
+        }*/
+    }
+
+    private fun launchComposePayPalSavedPaymentMethod() {
+        val action =
+            MainFragmentDirections.actionMainFragmentToComposePaypalSavedPaymentMethodFragment()
+        action.setAuthString("")
+        /*fetchAuthorizationAndHandleError { authString ->
+            val action =
+                MainFragmentDirections.actionMainFragmentToComposePaypalSavedPaymentMethodFragment()
+            action.setAuthString(authString)
+            findNavController().navigate(action)
+        }*/
     }
 
     companion object {

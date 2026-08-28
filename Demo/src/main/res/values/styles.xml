@@ -12,4 +12,28 @@
         <item name="android:minWidth">0dp</item>
     </style>
 
+    <!-- ===== PayPalSavedPaymentMethod demo screen: rounded, borderless "settings row" card ===== -->
+    <!-- Plain drawable-backed row instead of MaterialCardView, since the Demo app theme doesn't
+         descend from Theme.MaterialComponents. -->
+    <style name="PayPalSavedPaymentMethodCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:background">@drawable/bg_paypal_saved_payment_method_card</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="PayPalSavedPaymentMethodRowLabel">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/paypal_saved_payment_method_label_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
